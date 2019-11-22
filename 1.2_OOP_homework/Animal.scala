@@ -4,12 +4,30 @@
   * * 改Animal 和它的子类，使其还能表示动物都吃什么。所编写的代码需要满足如下测试
   */
 
-class Animal(){}
+abstract class Animal{
+  def animal:String
+  def sound:String
+  def food:String
+  def templateMethod(): String = s"${animal}: ${sound}"
+}
+
+class Duck extends Animal {
+  override def animal: String = "Duck"
+  override def sound: String = "Gaga!"
+  override def food: String = "Duck food is plants."
+}
+
+class Cow extends Animal{
+  override def animal: String = "Cow"
+  override def sound: String = "Mow~"
+  override def food: String = "Cow food is grass."
+}
+
 object Animal{
   def main(args: Array[String]): Unit = {
     val duck = new Duck
-    // Duck food is “plants”
     val cow = new Cow
-    // Cow.food is “grass”
+    println(s"${duck.templateMethod()},${duck.food}")// Duck food is “plants”
+    println(s"${cow.templateMethod()},${cow.food}")// Cow.food is “grass”
   }
 }
